@@ -4,12 +4,16 @@ import path from "path";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
+import { connectDB } from "./lib/db.js";
 dotenv.config();
+connectDB();
 
 const app = express();
 const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 5000;
+
+app.use(express.json()); //req.body
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
